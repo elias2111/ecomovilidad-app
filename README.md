@@ -36,13 +36,14 @@ También puedes crear una cuenta nueva de cliente. En **Cuenta → Casos de uso*
 | Mapas | Mapa propio en SVG del área metropolitana, con geocercas y posiciones en vivo |
 | GPS | Simulado: cada dispositivo se mueve y reporta su posición cada 3 segundos |
 | Pagos | Pasarela de pruebas dentro de la app y pago manual (transferencia o efectivo) que confirma el administrador |
-| Otros | Códigos QR con qrcode-generator; tipografías Archivo e IBM Plex Mono; modo claro y oscuro |
+| Otros | Códigos QR con qrcode-generator y lectura con la cámara con jsQR (incluidas en la app, sin internet); tipografías Archivo e IBM Plex Mono; modo claro y oscuro |
 | Publicación | GitHub Pages |
 
 ## Qué probar
 
 - **Compra:** agrega al carrito (queda reservado 15 minutos), elige domicilio o **recogida en sucursal**, fecha y franja, y paga en la pasarela de pruebas. La factura queda en *Pedidos*.
 - **Domicilio con domiciliario:** como administrador, en *Domicilios* asigna un domiciliario, avanza los estados y confirma la entrega con el código QR del cliente o con su firma. El cliente sigue el avance en el mapa.
+- **Escanear el QR:** el cliente abre su pedido (por ejemplo EM-1002) y muestra el QR. El domiciliario, en *Entregas › Confirmar entrega*, toca *Escanear con la cámara*. Si el iPhone no da permiso de cámara, *Tomar foto del QR* abre la cámara del sistema; también se puede escribir el código de 6 caracteres. Los pedidos de ejemplo tienen el mismo código en todos los dispositivos, así que el QR de un teléfono sirve en otro.
 - **Domicilio con dron:** en *Domicilios*, el pedido EM-1004 se puede asignar a un **dron**: elige cuál y toca el mapa para marcar el punto exacto de entrega. El dron vuela solo y suelta el paquete únicamente si su GPS está a 50 m o menos del punto. Entonces el cliente ve **"Recibí mi pedido"** o **"No lo encuentro"**; si en 30 minutos no confirma ni reclama, el panel cierra con la evidencia del dron. El pedido EM-1008 del cliente ya viene volando: en un minuto aparece el botón de confirmar.
 - **Seguimiento de flota:** en *Operación* están el mapa en vivo y la lista de vehículos de alquiler, domiciliarios y **drones de domicilio**, cada uno con lo que está haciendo ("Llevando un domicilio…", "Alquilada hasta…", "En taller", "Disponible").
 - **Alquiler y recogida en sucursal:** en *Alquiler* eliges vehículo, sucursal y fechas, y pagas. En el panel (*Gestión → Pedidos y alquileres*), la sucursal **registra la salida** del vehículo; desde ese momento aparece como **no disponible** y no se puede entregar a otro cliente. Al volver, **registra la entrada** con los km u horas de uso. El alquiler EM-1009 está listo para probarlo.
@@ -68,7 +69,7 @@ Para volver a los datos iniciales: *Cuenta → Ajustes → Borrar datos de la ap
 | CU-05 Pago | Hecho | Pasarela de pruebas o pago manual confirmado por el panel; factura en PDF y XML de muestra |
 | CU-06 Agendar entrega o recogida | Hecho | Cupo por sucursal y franja |
 | CU-07 Seguimiento del domicilio | Hecho | Enlace público con la posición del domiciliario o del dron |
-| CU-08 Validar entrega | Hecho | Código QR, firma o, con dron, GPS del punto de entrega más confirmación del cliente |
+| CU-08 Validar entrega | Hecho | QR escaneado con la cámara (o con una foto, o el código escrito), firma o, con dron, GPS del punto de entrega más confirmación del cliente |
 | CU-09 Contenidos | Hecho | Banners, propuesta de valor y noticias con vista previa |
 | CU-10 Monitoreo de flota | Hecho | Vehículos, domiciliarios y drones con su actividad; GPS simulado |
 | CU-11 Geofencing | Hecho | Zonas circulares; la alerta se abre al salir y se cierra al volver |
