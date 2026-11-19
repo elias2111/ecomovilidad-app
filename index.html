@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light;background:#F8FAFC}body{margin:0;overscroll-behavior:none}[hidden]{display:none!important}
+<style>:root{color-scheme:light;background:#F8FAFC}body{margin:0;overscroll-behavior:none}[hidden]{display:none!important}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){background:#07111F}}:root[data-theme="dark"]{background:#07111F}
 .hdr{-webkit-user-select:none;user-select:none}.tabs{-webkit-user-select:none;user-select:none}</style>
 <title>EcoMovilidad</title>
@@ -49,16 +49,16 @@ button{cursor:pointer}
 ::selection{background:var(--volt);color:var(--ink)}
 .d{font-stretch:118%;font-weight:760;letter-spacing:-.025em;line-height:1.04}
 .dt{font-stretch:112%;font-weight:700;letter-spacing:-.015em;line-height:1.12}
-.app{height:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);position:relative;overflow:hidden}
+.app{position:fixed;top:0;left:0;right:0;height:100%;height:100dvh;max-width:440px;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);position:relative;overflow:hidden}
 @media (min-width:600px){.app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
-.hdr{flex:none;display:flex;align-items:center;gap:8px;min-height:58px;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:var(--bg);border-bottom:1px solid var(--line)}
+.hdr{flex:none;display:flex;align-items:center;gap:8px;min-height:calc(58px + env(safe-area-inset-top,0px));padding-block:calc(8px + env(safe-area-inset-top,0px)) 8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:var(--bg);border-bottom:1px solid var(--line)}
 .hdr h1{flex:1;min-width:0;margin:0;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mark{width:32px;height:32px;flex:none;display:block}
 .iconbtn{position:relative;width:40px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none}
 .iconbtn .dot{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--volt);color:var(--ink);font-size:10.5px;font-weight:800;display:grid;place-items:center}
 .main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
 .main>*{flex-shrink:0}
-.tabs{flex:none;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--surface);border-top:1px solid var(--line);padding-block:6px 4px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+.tabs{flex:none;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--surface);border-top:1px solid var(--line);padding-block:6px calc(4px + env(safe-area-inset-bottom,0px));padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
 .tab{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;font-size:10.5px;font-weight:600;color:var(--muted)}
 .tab[aria-current="page"]{color:var(--fg)}
 .tab[aria-current="page"] svg{background:var(--volt);color:var(--ink);border-radius:999px;box-shadow:0 0 0 5px var(--volt)}
@@ -218,7 +218,7 @@ textarea.input{min-height:84px;resize:vertical}
 @keyframes ping{0%{r:6;opacity:.7}100%{r:22;opacity:0}}
 .ping{animation:ping 1.6s ease-out infinite}
 .overlay{position:absolute;inset:0;background:rgba(7,17,31,.55);z-index:40;display:flex;align-items:flex-end;animation:fade .18s}
-.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--bg);border-radius:24px 24px 0 0;padding-block:8px 26px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet{width:100%;max-height:calc(100% - env(safe-area-inset-top,0px) - 16px);overflow-y:auto;background:var(--bg);border-radius:24px 24px 0 0;padding-block:8px calc(26px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
 .sheet>*{flex-shrink:0}
 .grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto}
 .sheet-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -226,7 +226,7 @@ textarea.input{min-height:84px;resize:vertical}
 @keyframes up{from{transform:translateY(40px);opacity:.4}}
 @keyframes fade{from{opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
-.toast{position:absolute;left:50%;transform:translateX(-50%);bottom:86px;z-index:60;background:var(--ink);color:var(--paper);padding:11px 16px;border-radius:14px;font-size:13.5px;font-weight:600;max-width:calc(100% - 32px);box-shadow:0 8px 24px rgba(7,17,31,.25);animation:up .2s;border:1px solid var(--ink-line)}
+.toast{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:60;background:var(--ink);color:var(--paper);padding:11px 16px;border-radius:14px;font-size:13.5px;font-weight:600;max-width:calc(100% - 32px);box-shadow:0 8px 24px rgba(7,17,31,.25);animation:up .2s;border:1px solid var(--ink-line)}
 .alertbar{flex:none;background:var(--danger);color:#fff;display:flex;align-items:center;gap:10px;padding-block:9px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-size:13.5px;font-weight:700;border:0;width:100%;text-align:left}
 .qrbox{background:#fff;border-radius:16px;padding:14px;display:grid;place-items:center;width:220px;max-width:100%;margin:0 auto}
 .qrbox svg{width:100%;height:auto}
@@ -264,7 +264,7 @@ a{color:var(--accent)}
 .splash .mk{width:88px;height:88px;animation:pop .7s cubic-bezier(.2,1.4,.4,1) both}
 .splash b{display:block;color:#F8FAFC;margin-top:14px;font-size:24px;text-align:center;animation:enter .5s .2s both}
 @keyframes pop{from{transform:scale(.5);opacity:0}}
-.onb{position:absolute;inset:0;z-index:80;background:#07111F;color:#F8FAFC;display:flex;flex-direction:column;padding-block:20px 24px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));gap:18px}
+.onb{position:absolute;inset:0;z-index:80;background:#07111F;color:#F8FAFC;display:flex;flex-direction:column;padding-block:calc(20px + env(safe-area-inset-top,0px)) calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));gap:18px}
 .onb .skip{align-self:flex-end;background:none;border:0;color:#9FB0C5;font-weight:600;padding:8px}
 .onb .pic{flex:1;min-height:0;border-radius:24px;overflow:hidden;background:#0E1B2E;display:grid;place-items:center}
 .onb .pic img{width:100%;height:100%;object-fit:cover}
@@ -295,6 +295,27 @@ a{color:var(--accent)}
   <div id="onb"></div>
   <div class="splash" id="splash"><div><svg class="mk" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#39E58C"/><path d="M9 22.5c0-3.6 2.9-5.5 7-5.5s7-1.9 7-5.5" fill="none" stroke="#07111F" stroke-width="2.6" stroke-linecap="round"/><circle cx="9" cy="22.5" r="2.6" fill="#07111F"/><circle cx="23" cy="11.5" r="2.6" fill="#07111F"/></svg><b class="d">EcoMovilidad</b></div></div>
 </div>
+<script>
+/* Alto real de la pantalla. En iPhone, instalada en la pantalla de inicio, iOS
+   calcula el 100% de la página sin la barra de estado y deja una franja vacía
+   abajo. En ese modo la app ocupa la pantalla completa, así que se usa su alto. */
+(function(){
+  var app = document.getElementById('app');
+  function fit(){
+    var st = window.navigator.standalone === true || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+    if (!st) { app.style.height = ''; return; }
+    var portrait = window.innerHeight >= window.innerWidth;
+    var sw = portrait ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height);
+    var sh = portrait ? Math.max(screen.width, screen.height) : Math.min(screen.width, screen.height);
+    if (Math.abs(window.innerWidth - sw) > 2) { app.style.height = ''; return; }
+    app.style.height = Math.max(sh, window.innerHeight) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', function(){ setTimeout(fit, 250); });
+  window.addEventListener('pageshow', fit);
+})();
+</script>
 
 <script>
 "use strict";
