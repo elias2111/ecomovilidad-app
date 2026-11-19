@@ -35,7 +35,7 @@ También puedes crear una cuenta nueva de cliente. En **Cuenta → Casos de uso*
 | Datos | `localStorage` del teléfono; cada teléfono tiene sus propios datos |
 | Mapas | Mapa propio en SVG del área metropolitana, con geocercas y posiciones en vivo |
 | GPS | Simulado: cada dispositivo se mueve y reporta su posición cada 3 segundos |
-| Pagos | Pasarela de pruebas dentro de la app (aprobar, rechazar o dejar pendiente) |
+| Pagos | Pasarela de pruebas dentro de la app y pago manual (transferencia o efectivo) que confirma el administrador |
 | Otros | Códigos QR con qrcode-generator; tipografías Archivo e IBM Plex Mono; modo claro y oscuro |
 | Publicación | GitHub Pages |
 
@@ -47,6 +47,11 @@ También puedes crear una cuenta nueva de cliente. En **Cuenta → Casos de uso*
 - **Seguimiento de flota:** en *Operación* están el mapa en vivo y la lista de vehículos de alquiler, domiciliarios y **drones de domicilio**, cada uno con lo que está haciendo ("Llevando un domicilio…", "Alquilada hasta…", "En taller", "Disponible").
 - **Alquiler y recogida en sucursal:** en *Alquiler* eliges vehículo, sucursal y fechas, y pagas. En el panel (*Gestión → Pedidos y alquileres*), la sucursal **registra la salida** del vehículo; desde ese momento aparece como **no disponible** y no se puede entregar a otro cliente. Al volver, **registra la entrada** con los km u horas de uso. El alquiler EM-1009 está listo para probarlo.
 - **Mantenimiento:** en *Gestión → Flota de alquiler* cada unidad tiene dos límites: el uso (sale de la oferta al 90 % del umbral) y el **tiempo** (revisión cada 90 días; drones cada 60, editable). El panel muestra las próximas revisiones y saca sola la unidad cuando vence; vuelve al registrar el mantenimiento.
+- **Pago manual:** al pagar elige *Pago manual*. Ves las instrucciones, la referencia y el plazo (24 horas). El administrador lo confirma o lo marca como no recibido en el detalle del pedido; el panel muestra cuántos hay por confirmar.
+- **Contacto:** en *Cuenta → Contacto* (o al final del inicio) escribe un mensaje. El administrador lo ve en *Gestión → Mensajes de contacto* y lo marca como atendido.
+- **Catálogo y tienda desde el panel:** en *Gestión* el administrador edita **productos** (precio, precio anterior, descripción, destacados, publicado), **categorías** (nombre, descripción, visible), **sucursales** (crear o editar, con ubicación tocando el mapa, servicios y cupo por franja) y **usuarios** (buscar, ver sus pedidos, activar o desactivar la cuenta).
+- **Domiciliarios y dispositivos GPS:** en *Gestión* agrega domiciliarios (cada uno recibe su GPS) y registra dispositivos: drones de domicilio, GPS de domiciliario o de vehículo. El token se muestra una sola vez; desactivar un dispositivo lo saca del mapa.
+- **Nosotros y servicios:** páginas con los compromisos legales y cómo avanza un domicilio.
 - **Zonas y alertas:** en *Gestión → Zonas y alertas* crea una geocerca tocando el mapa y usa *Probar alerta*.
 - **Reembolso, inventario y contenidos:** el cliente cancela o pide reembolso; el panel lo registra, ajusta existencias y edita banners, propuesta de valor y noticias.
 
@@ -56,11 +61,11 @@ Para volver a los datos iniciales: *Cuenta → Ajustes → Borrar datos de la ap
 
 | Caso de uso | Estado | Cómo se hace en la app |
 | --- | --- | --- |
-| CU-01 Registro e inicio de sesión | Hecho | Correo y contraseña; bloqueo tras 5 intentos fallidos |
-| CU-02 Catálogo | Hecho | Filtros por categoría, marca y precio |
+| CU-01 Registro e inicio de sesión | Hecho | Correo y contraseña; bloqueo tras 5 intentos fallidos; el administrador puede desactivar cuentas |
+| CU-02 Catálogo | Hecho | Filtros por categoría, marca y precio; productos y categorías editables en el panel |
 | CU-03 Compra | Hecho | Reserva de 15 minutos al agregar al carrito |
 | CU-04 Alquiler | Hecho | Sin cruces de horario; no ofrece unidades afuera, en taller o con revisión vencida |
-| CU-05 Pago | Hecho | Pasarela de pruebas; factura en PDF y XML de muestra |
+| CU-05 Pago | Hecho | Pasarela de pruebas o pago manual confirmado por el panel; factura en PDF y XML de muestra |
 | CU-06 Agendar entrega o recogida | Hecho | Cupo por sucursal y franja |
 | CU-07 Seguimiento del domicilio | Hecho | Enlace público con la posición del domiciliario o del dron |
 | CU-08 Validar entrega | Hecho | Código QR, firma o, con dron, GPS del punto de entrega más confirmación del cliente |
@@ -80,8 +85,9 @@ Para volver a los datos iniciales: *Cuenta → Ajustes → Borrar datos de la ap
 2. **Seguimiento del administrador:** vehículos, domiciliarios y drones de domicilio en el mapa y en la lista.
 3. **Recogida en sucursal con registro de salida y entrada:** un vehículo afuera no aparece disponible.
 4. **Mantenimiento cada cierto tiempo** en el panel, además del mantenimiento por uso.
+5. **Igual que la web (`main`):** pago manual, formulario de contacto con bandeja en el panel, páginas Nosotros y Servicios, inicio con área de cobertura y accesos por categoría, y gestión de productos, categorías, sucursales, usuarios, domiciliarios y dispositivos GPS.
 
-Los mismos cambios están en la web, en la rama `feature/domicilios-dron-salidas-mantenimiento` de https://github.com/santrolop1/ecomovilidad. Los diagramas actualizados (casos de uso, secuencia, clases con interfaz/control/entidad, paquetes, componentes y nodos) se entregan aparte en *Diagramas-EcoMovilidad.pdf*; no están en este repositorio.
+Los mismos cambios están en la rama `main` de la web: https://github.com/santrolop1/ecomovilidad. Los diagramas actualizados (casos de uso, secuencia, clases con interfaz/control/entidad, paquetes, componentes y nodos) se entregan aparte en *Diagramas-EcoMovilidad.pdf*; no están en este repositorio.
 
 ## App y web
 
@@ -90,7 +96,7 @@ Los mismos cambios están en la web, en la rama `feature/domicilios-dron-salidas
 | Dónde corre | En el teléfono, sin servidor | Next.js + FastAPI + PostgreSQL/PostGIS |
 | Datos | De demostración, guardados en el teléfono | Base de datos compartida |
 | GPS | Simulado | Dispositivos reales o simulador (`scripts/simulate_gps.py`) |
-| Pagos | Pasarela de pruebas | Pasarela de pruebas, pago manual o Wompi |
+| Pagos | Pasarela de pruebas o pago manual | Pasarela de pruebas, pago manual o Wompi |
 | Para qué sirve | Mostrar y probar todo desde el iPhone | El sistema completo, listo para desplegar |
 
 ## Archivos
